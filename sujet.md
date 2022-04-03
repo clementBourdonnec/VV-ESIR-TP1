@@ -49,3 +49,30 @@ A final state would be to automate these experiments.
 
 So Netflix is not the only company that is using Chaos Engineering : Google, Amazon, Microsoft or Facebook are using similar tests to ensure the resilience of their systems. For example Amazon is doing “Chaos Kong” exercises to simulate the failure of an entire Amazon region.
 As well as the experiments, the metrics used as data to see the resilience of a system differ following the system to test :  it can be the number of sign ups, the number of completed purchases for an e-commerce site, etc…
+
+4. WebAssembly is the first language in the web environment being formally specified. The aim is to match a number of properties :
+ 
+• Safe, fast, and portable semantics: 
+safe to execute
+     fast to execute
+language -, hardware-, and platform-independent
+     deterministic and easy to reason about simple
+     interoperability with the Web platform 
+
+• Safe and efficient representation:
+compact and easy to decode
+easy to validate and compile
+easy to generate for producers 
+streamable and parallelizable
+
+Formal specification is helping to achieve and prove these goals.
+
+It does not mean it is unnecessary to test the system. Implementation errors can be found and some aspects of the system are not formally specified. In addition, as we will see in the next exercise errors were found in the original formal specification. We also need to check if its specification matches the expectations. 
+
+5. This paper is about mechanization of the WebAssambly specification using Isabelle which is a generic proof assistant.
+
+The original specification was done by hand which is prone to errors. Mechanised specification is using software to make proof that it is correct. It helped to discover issues in the type system original specification. They also used Isabelle to define a type checker and an interpreter which were proven sound.
+
+They also did a validation of the new model with the official conformance tests. It is necessary because it is required to check if the mechanized specification was the “right” specification (eg: what system we wanted to build). A fuzzing was also conducted.
+
+Testing is still needed to avoid implementation errors. Moreover WebAssembly is interfacing with unsafe environments such as javascript so testing those interfaces is a good idea. 
